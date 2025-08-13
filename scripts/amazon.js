@@ -2,7 +2,7 @@
 // Make sure it has the same structure  
 
 // Step 2: generate the HTML
-import {cart} from '../data/cart.js';     // .. means outside the current directory (scripts)
+import {cart, addToCart} from '../data/cart.js';     // .. means outside the current directory (scripts)
 import {products} from '../data/products.js';  
 
 let productHTML = ''; 
@@ -63,35 +63,23 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productHTML; 
 
+
+function updateCartQuantity() {
+	let cartQuantity = 0;
+
+	cart.forEach((cartItem) => {
+		cartQuantity += cartItem.quantity;
+	});
+
+	document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+}
+
 document.querySelectorAll('.js-add-to-cart')
     .forEach((button) => {
         button.addEventListener('click', () => {
             const productId = button.dataset.productId;         // check the console for the name 
+            addToCart(productId); 
 
-            let matchingItem; 
-
-            cart.forEach((item) => {
-                if (productId === item.productId) {       // product already in the cart 
-                    matchingItem = item; 
-                }
-            });
-
-            if (matchingItem) {          // if that item exits 
-                matchingItem.quantity++; 
-            }
-            else {
-                cart.push({
-                    productId: productId,
-                    quantity: 1
-                });
-            }
-
-            let cartQuantity = 0; 
-
-            cart.forEach((item) => {
-              cartQuantity += item.quantity; 
-            }); 
-
-            document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;   
+            updateCartQuantity();    
         }); 
     }); 
