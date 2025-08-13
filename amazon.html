@@ -56,8 +56,26 @@
       </div>
     </div>
 
-    <script src="data/cart.js"></script>
     <script src="data/products.js"></script>      <!-- will run the script files one by one, order matters -->
-    <script src="scripts/amazon.js"></script>
+    <script type="module" src="scripts/amazon.js"></script>
+    <!-- type="module" let this file get variables out of other files -->
   </body>
 </html>
+
+<!--
+Steps to create a module
+1. Create a file 
+2. Dont't load the file with <script>
+  See cart.js 
+
+To load a module 
+1. type="module"
+2. export the variable that we need 
+3. import that varible: import {variable name} from '(poth name)'; 
+
+Benefits: 
+- Avoid naming conflicts 
+- Don't need worry the order of scripts 
+
+Modules only works with live server 
+-->
