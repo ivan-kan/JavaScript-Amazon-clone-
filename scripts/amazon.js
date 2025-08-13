@@ -2,7 +2,8 @@
 // Make sure it has the same structure  
 
 // Step 2: generate the HTML
-import {cart} from '../data/cart.js';     // .. means outside the current directory (scripts)  
+import {cart} from '../data/cart.js';     // .. means outside the current directory (scripts)
+import {products} from '../data/products.js';  
 
 let productHTML = ''; 
 
