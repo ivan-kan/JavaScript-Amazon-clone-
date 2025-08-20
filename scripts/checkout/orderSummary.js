@@ -5,12 +5,7 @@ import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';     /
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'; 
 // No need {} if using default export 
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
-
-hello(); 
-  
-const today = dayjs(); 
-const deliveryDay = today.add(7, 'day'); 
-console.log(deliveryDay.format('dddd, MMMM D'));  
+import { renderPaymentSummary } from './paymentSummary.js';  
 
 export function renderOrderSummary() {
 
@@ -121,6 +116,8 @@ export function renderOrderSummary() {
             
             const container = document.querySelector(`.js-cart-item-container-${productId}`); 
             container.remove();    // remove the HTML code 
+
+            renderPaymentSummary(); 
         });
     }); 
 
@@ -129,6 +126,7 @@ export function renderOrderSummary() {
         element.addEventListener('click', () => {
             updateDeliveryOption(productId, deliveryOptionId); 
             renderOrderSummary(); 
+            renderPaymentSummary(); 
         }); 
     });
 }
