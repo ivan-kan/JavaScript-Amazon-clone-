@@ -1,7 +1,7 @@
 class Cart {      // class = object generator 
     // Properties 
     cartItems;
-    localStorageKey;  
+    #localStorageKey;      // # means it is a private property -> can only be accessed inside this class  
 
     // will run automatically when we generate a new object -> put the set-up code inside 
     /* 
@@ -9,13 +9,13 @@ class Cart {      // class = object generator
     - Should not return anything 
     */
     constructor(localStorageKey) {
-        this.localStorageKey = localStorageKey;
-        this.loadFromStorage();
+        this.#localStorageKey = localStorageKey;
+        this.#loadFromStorage();
     }   
 
     // Methods 
-    loadFromStorage() {
-        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));   // this points to the object that we generated 
+    #loadFromStorage() {   // this is a private method 
+        this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));   // this points to the object that we generated 
 
         if (!this.cartItems) {
             this.cartItems = [{
@@ -31,7 +31,7 @@ class Cart {      // class = object generator
     }
 
     saveToStorage() {
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+        localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
     }
 
     addToCart(productId) {
