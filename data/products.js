@@ -34,7 +34,31 @@ class Product {
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`; 
   }
+
+  extraInfoHTML() {
+    return ''; 
+  }
 } 
+
+// When to use inheritance: 
+// One class is a more specific type of another class 
+
+class Clothing extends Product{    // Parent class: Product, child class: Clothing 
+  // All the method in the parent class can be used by the child class
+  sizeChartLink; 
+  
+  constructor(productDetails) {
+    super(productDetails);     // this calls the constructor of parent class  
+    this.sizeChartLink = productDetails.sizeChartLink; 
+  }
+
+  extraInfoHTML() {    // this will override the parent's method 
+    // super.extraInfoHTML()  this calls the parent's method 
+    return `
+      <a href="${this.sizeChartLink}" target="_blank">Size chart</a>
+    `;
+  }
+}
 
 export const products = [
   {
@@ -696,5 +720,8 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
+  if (productDetails.type === 'clothing') {
+    return new Clothing(productDetails); 
+  }
   return new Product(productDetails); 
 });
