@@ -60,6 +60,31 @@ class Clothing extends Product{    // Parent class: Product, child class: Clothi
   }
 }
 
+/*
+const date = new Date(); 
+console.log(date); 
+console.log(date.toLocaleTimeString()); 
+*/
+/*
+const obj2 = {
+  a: 2, 
+  b: this.a
+}; 
+*/
+/*
+function logThis() {
+  console.log(this); 
+}
+logThis();
+logThis.call('hello');   // .call() replaces the ths with the string in the parameter 
+
+const obj3 = {
+  method: () => {
+    console.log(this);    // using arrow function: 'this' does not point to the object, unlike regular functions
+  }
+}; 
+obj3.method(); 
+*/
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
