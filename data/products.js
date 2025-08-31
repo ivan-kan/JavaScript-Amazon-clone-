@@ -103,6 +103,9 @@ export function loadProductsFetch() {     // fetch() is also used to make HTTP r
     });
 
     console.log('load products');
+  }).catch((error) => {              // for error handling, error parameter contains details of the error 
+    console.log('error'); 
+    console.log(error); 
   });    
   return promise;    
 }
@@ -126,6 +129,12 @@ export function loadProducts(func) {
 
     func(); 
   })
+
+  // this is for error handling 
+  xhr.addEventListener('error', () => {
+    console.log('error');
+  }); 
+
   xhr.open('GET', 'https://supersimplebackend.dev/products')
   xhr.send(); 
 }

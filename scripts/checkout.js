@@ -5,16 +5,26 @@ import { loadCart } from "../data/cart.js";
 // import '../data/cart-class.js'; 
 // import '../data/backend-practice.js'
 
-async function loadPage() {    // async = makes a function that returns a promise, ONLY works with promise 
-    await loadProductsFetch();   // await => let us write asynchronous code like normal code 
-    // wait for ths line of code to finish first 
-    // **** We can ONLY use await when we are inside a async function ****
+async function loadPage() {    // async = makes a function that returns a promise, ONLY works with promise
+    try{     // put codes that may give error in side the {}
+        // throw 'error1';    // manually create an error, 'error1' will be saved as the parameter of catch()  
 
-    await new Promise((resolve) => {
-        loadCart(() => {             
-            resolve('value2');       // we can save this value with a variable, no need to use then() 
-        });
-    })
+        await loadProductsFetch();   // await => let us write asynchronous code like normal code 
+        // wait for ths line of code to finish first 
+        // **** We can ONLY use await when we are inside a async function ****
+
+        await new Promise((resolve, reject) => {  // reject() -> let us create an error in the future 
+            // throw 'error2'
+            loadCart(() => {
+                // reject('error3'); 
+
+                resolve('value2');       // we can save this value with a variable, no need to use then() 
+            });
+        })
+    } catch(error) {       // error contains info about the error 
+        console.log('error'); 
+        console.log(error); 
+    }
 
     renderOrderSummary();           
     renderPaymentSummary();
