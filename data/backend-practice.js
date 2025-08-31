@@ -12,9 +12,9 @@ xhr.open('GET', 'https://supersimplebackend.dev');
 /*
 1st: type of HTTP message
 - 'GET': get some info from the backend 
-- 'POST'
-- 'PUT'
-- 'DELETE'
+- 'POST': create something
+- 'PUT': update something 
+- 'DELETE': delete something 
 
 2nd: where to send this HTTP message (url)
 */
